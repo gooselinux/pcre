@@ -1,0 +1,32 @@
+--- pcre-7.3/pcre-config.in.orig	2007-09-17 15:58:11.000000000 +0200
++++ pcre-7.3/pcre-config.in	2007-09-17 16:02:50.000000000 +0200
+@@ -12,16 +12,6 @@
+       exit 1
+ fi
+ 
+-libR=
+-case `uname -s` in
+-  *SunOS*)
+-  libR=" -R@libdir@"
+-  ;;
+-  *BSD*)
+-  libR=" -Wl,-R@libdir@"
+-  ;;
+-esac
+-
+ while test $# -gt 0; do
+   case "$1" in
+   -*=*) optarg=`echo "$1" | sed 's/[-_a-zA-Z0-9]*=//'` ;;
+@@ -55,10 +45,10 @@
+       echo $includes
+       ;;
+     --libs-posix)
+-      echo -L@libdir@$libR -lpcreposix -lpcre
++      echo -lpcreposix -lpcre
+       ;;
+     --libs)
+-      echo -L@libdir@$libR -lpcre
++      echo -lpcre
+       ;;
+     *)
+       echo "${usage}" 1>&2
